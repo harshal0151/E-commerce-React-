@@ -9,9 +9,9 @@ function Header() {
     <section className="fixed top-0 w-full z-50 ">
 
     <div  className="text-end p-1 bg-zinc-300 text-[12px]">
-      <Link to="/">Sign in / Guest
-     </Link>
-      <Link className="mx-4" to="/"> Create Account</Link>
+      <a to="/">Sign in / Guest
+     </a>
+      <a className="mx-4" to="/"> Create Account</a>
     </div>
       <div className=" flex justify-around items-center p-5 w-full border backdrop-blur-sm bg-white/30">
         <div className="">
