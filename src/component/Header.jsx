@@ -1,18 +1,19 @@
 import React from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import { MdOutlineWbSunny } from "react-icons/md";
-import { Link , NavLink} from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 function Header() {
   return (
-    <>
+    <section className="fixed top-0 w-full z-50 ">
 
     <div  className="text-end p-1 bg-zinc-300 text-[12px]">
-      <a href="">Sign in / Guest
-     </a>
-      <a className="mx-4" href=""> Create Account</a>
+      <Link to="/">Sign in / Guest
+     </Link>
+      <Link className="mx-4" to="/"> Create Account</Link>
     </div>
-      <div className=" flex justify-around items-center p-4 w-full border ">
+      <div className=" flex justify-around items-center p-5 w-full border backdrop-blur-sm bg-white/30">
         <div className="">
           <h1>LoGo</h1>
         </div>
@@ -30,8 +31,8 @@ function Header() {
           </li>
         </ul>
 
-        <div className="flex gap-8">
-          <a href="">
+        <div className="flex gap-8 text-2xl">
+          <a href="/cart">
             <CiShoppingCart />
           </a>
           <a href="">
@@ -39,7 +40,7 @@ function Header() {
           </a>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 
