@@ -1,18 +1,181 @@
-import React, { useContext } from 'react'
-import { ProductContex } from '../useContex/productContex'
-
-
+import React, { useContext } from 'react';
+import { ProductContext } from '../useContex/productContex';
+import { Link } from 'react-router-dom';
+import { CiShoppingCart } from "react-icons/ci";
 
 function Cart() {
-  const {  cart } = useContext(ProductContex);
+  const { cart } = useContext(ProductContext);
 
-
-  
   console.log(cart);
 
+  // Placeholder function for decreasing quantity
+  const handleDecreaseQuantity = (product) => {
+    // Implement quantity decrease logic here
+    console.log('Decrease quantity', product);
+  };
+
+  // Placeholder function for increasing quantity
+  const handleIncreaseQuantity = (product) => {
+    // Implement quantity increase logic here
+    console.log('Increase quantity', product);
+  };
+
+  // Placeholder function for removing from cart
+  const handleRemoveFromCart = (product) => {
+    // Implement remove from cart logic here
+    console.log('Remove from cart', product);
+  };
+
+  // Placeholder function for calculating subtotal
+  const calculateSubtotal = (cart) => {
+    return cart.reduce((sum, product) => sum + product.attributes.price * product.quantity, 0);
+  };
+
+  // Placeholder function for calculating total
+  const calculateTotal = (cart) => {
+    const subtotal = calculateSubtotal(cart);
+    const shipping = 800; // Assuming shipping cost is ₹ 8.00
+    return subtotal + shipping;
+  };
+
   return (
-    <div>Cart</div>
-  )
+    <section className="h-screen bg-gray-100 py-12 sm:py-16 lg:py-20">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto mt-8 max-w-full md:mt-1">
+          {cart.length === 0 ? (
+            <div className="text-center">
+              <p className="text-2xl font-semibold text-gray-900">
+                Your cart is empty.
+              </p>
+              <Link
+                to="/products"
+                className="mt-4 inline-block rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
+              >
+                Continue Shopping
+              </Link>
+            </div>
+          ) : (
+            <>
+              {cart.map((c, index) => (
+                <div key={index} className="bg-white shadow mb-8">
+                  <div className="px-4 py-6 sm:px-8 sm:py-10">
+                    <div className="flow-root">
+                      <ul className="-my-8">
+                        <li className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
+                          <div className="shrink-0">
+                            <img
+                              className="h-24 w-24 max-w-full rounded-lg object-cover"
+                              src={c.attributes.image}
+                              alt={c.attributes.title}
+                            />
+                          </div>
+
+                          <div className="relative flex flex-1 flex-col justify-between">
+                            <div className="sm:col-gap-5 sm:grid sm:grid-cols-2">
+                              <div className="pr-8 sm:pr-5">
+                                <p className="text-base font-semibold text-gray-900">
+                                  {c.attributes.title}
+                                </p>
+                              </div>
+
+                              <div className="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
+                                <p className="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">
+                                  ₹ {c.attributes.price / 100}
+                                </p>
+
+                                <div className="sm:order-1">
+                                  <div className="mx-auto flex h-8 items-stretch text-gray-600">
+                                    <button
+                                      className="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
+                                      onClick={() => handleDecreaseQuantity(c)}
+                                    >
+                                      -
+                                    </button>
+                                    <div className="flex w-full items-center justify-center bg-gray-100 px-4 text-xs uppercase transition">
+                                      {c.quantity}
+                                    </div>
+                                    <button
+                                      className="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
+                                      onClick={() => handleIncreaseQuantity(c)}
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
+                              <button
+                                type="button"
+                                className="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-gray-900"
+                                onClick={() => handleRemoveFromCart(c)}
+                              >
+                                <svg
+                                  className="h-5 w-5"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                  />
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <div className="mt-6 border-t border-b py-2">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-gray-400">Subtotal</p>
+                  <p className="text-lg font-semibold text-gray-900">₹ {calculateSubtotal(cart) / 100}</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-gray-400">Shipping</p>
+                  <p className="text-lg font-semibold text-gray-900">₹ 8.00</p>
+                </div>
+              </div>
+              <div className="mt-6 flex items-center justify-between">
+                <p className="text-sm font-medium text-gray-900">Total</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  ₹ {calculateTotal(cart) / 100}
+                </p>
+              </div>
+
+              <div className="mt-6 text-center">
+                <button
+                  type="button"
+                  className="group inline-flex w-full items-center justify-center rounded-md bg-gray-900 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
+                >
+                  Checkout
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="group-hover:ml-8 ml-4 h-6 w-6 transition-all"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 }
 
-export default Cart
+export default Cart;

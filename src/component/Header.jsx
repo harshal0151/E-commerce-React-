@@ -22,27 +22,27 @@ function Header() {
 
         <ul className="flex gap-10">
           <li>
-            <Link href="/">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link href="/about">About</Link>
+            <Link to="/about">About</Link>
           </li>
           <li>
-            <Link href="/product">Product</Link>
+            <Link to="/product">Product</Link>
           </li>
           <li>
-            <Link href="/cart">Cart</Link>
+            <Link to="/cart">Cart</Link>
           </li>
         </ul>
 
         <div className="relative flex gap-8 text-2xl">
-          <Link href="/cart" className="relative">
+          <Link to="/cart" className="relative">
             <CiShoppingCart />
             <span className="absolute top-0 right-0 bg-blue-500 text-white rounded-full px-2 text-xs transform translate-x-1/2 -translate-y-1/2">
               {cart.length}
             </span>
           </Link>
-          <Link href="">
+          <Link to="">
             <MdOutlineWbSunny />
           </Link>
         </div>
