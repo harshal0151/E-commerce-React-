@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 export const ProductContex = createContext();
 
 export const ProductProvider = ({ children }) => {
-  const [product, setProduct] = useState([]);  // prducts
+  const [product, setProduct] = useState([]);  // products
   const [cart , setCart] = useState([])
 
   function handleAddToCart(e, product ) {

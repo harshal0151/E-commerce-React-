@@ -35,13 +35,13 @@ function Product() {
               <p className="text-gray-700 text-xl my-5 ">
                 ₹ {p.attributes.price}
               </p>
-              <buttom
-                className="flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md transition-transform transform hover:scale-105"
+              <button
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md transition-transform transform hover:scale-105"
                 onClick={(e) => handleAddToCart(e, p)}
               >
                 <CiShoppingCart className="text-2xl mx-2" />
                 Add to cart
-              </buttom>
+              </button>
             </div>
           </div>
         ))}

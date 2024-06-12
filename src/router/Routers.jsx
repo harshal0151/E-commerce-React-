@@ -6,10 +6,13 @@ import Product from "../page/Product";
 import Cart from "../page/Cart";
 
 import SingleProduct from "../page/SingleProduct";
+import Header from "../component/Header";
+
 
 function Routers() {
   return (
     <BrowserRouter>
+    <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
