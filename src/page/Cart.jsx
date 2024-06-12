@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import { ProductContext } from '../useContex/productContex';
+import { ProductContex } from "../useContex/productContex";
 import { Link } from 'react-router-dom';
-import { CiShoppingCart } from "react-icons/ci";
 
 function Cart() {
-  const { cart } = useContext(ProductContext);
+  const { cart } = useContext(ProductContex);
 
   console.log(cart);
 
