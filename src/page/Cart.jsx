@@ -47,7 +47,7 @@ function Cart() {
                 Your cart is empty.
               </p>
               <Link
-                to="/products"
+                to="/product"
                 className="mt-4 inline-block rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
               >
                 Continue Shopping
