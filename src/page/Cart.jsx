@@ -28,7 +28,7 @@ function Cart() {
                 </div>
               </Link>
               <div className="text-center">
-              <Link to={`/product/${p.id}`}>
+              <Link to={`/product/${w.id}`}>
            <h3 className="text-xl font-bold mb-2 capitalize hover:text-blue-500">
               {w.attributes.title}
             </h3>
