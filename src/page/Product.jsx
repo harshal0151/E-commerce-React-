@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { ProductContex } from "../useContex/productContex";
 import { CiShoppingCart } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function Product() {
-  const { data, handleAddToCart } = useContext(ProductContex);
+  const { data, handleAddToCart, handleAddToWishlist, wishlist } = useContext(ProductContex);
 
-  // console.log(data);
+  const isProductInWishlist = (id) => wishlist.some(item => item.id === id);
 
   return (
     <>
@@ -14,9 +15,9 @@ function Product() {
         All <span className="text-blue-600">Product</span>
       </h2>
       <div className="flex flex-wrap justify-center">
-        {data.map((p, index) => (
+        {data.map((p) => (
           <div
-            key={index}
+            key={p.id}
             className="max-w-sm w-[400px] rounded overflow-hidden shadow-lg m-8"
           >
             <Link to={`/product/${p.id}`}>
@@ -29,19 +30,29 @@ function Product() {
               </div>
             </Link>
             <div className="px-6 py-4">
-              <h3 className="text-xl font-bold mb-2 capitalize">
-                {p.attributes.title}
-              </h3>
-              <p className="text-gray-700 text-xl my-5 ">
+            <Link to={`/product/${p.id}`}>
+           <h3 className="text-xl font-bold mb-2 capitalize hover:text-blue-500">
+              {p.attributes.title}
+            </h3>
+           </Link>
+              <p className="text-gray-700 text-xl my-5">
                 ₹ {p.attributes.price}
               </p>
-              <button
-                className="flex w-full items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md transition-transform transform hover:scale-105"
-                onClick={(e) => handleAddToCart(e, p)}
-              >
-                <CiShoppingCart className="text-2xl mx-2" />
-                Add to cart
-              </button>
+              <div className="flex gap-2">
+                <button
+                  className="flex w-[80%] items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md transition-transform transform hover:scale-105"
+                  onClick={(e) => handleAddToCart(e, p)}
+                >
+                  <CiShoppingCart className="text-2xl mx-2" />
+                  Add to cart
+                </button>
+                <button
+                  className= 'w-[20%] flex items-center justify-center rounded-md shadow-sm border focus:outline-none transition-colors duration-300 '
+                  onClick={(e) => handleAddToWishlist(e, p)}
+                >
+                  <FaHeart className={`text-2xl ${isProductInWishlist(p.id) ? 'text-red-500' : 'text-gray-500'}` }/>
+                </button>
+              </div>
             </div>
           </div>
         ))}

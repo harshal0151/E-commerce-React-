@@ -7,6 +7,7 @@ import Cart from "../page/Cart";
 
 import SingleProduct from "../page/SingleProduct";
 import Header from "../component/Header";
+import Wishlist from "../page/Wishlist";
 
 
 function Routers() {
@@ -21,6 +22,7 @@ function Routers() {
         <Route path="/product/:id" element={<SingleProduct />}></Route>
 
         <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist/>}/>
       </Routes>
     </BrowserRouter>
   );

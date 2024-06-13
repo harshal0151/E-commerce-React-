@@ -1,19 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import { ProductContex } from "../useContex/productContex";
-import { FaHeart } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { CiShoppingCart } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
-function Cart() {
-  const { cart, handleAddToWishlist, wishlist } = useContext(ProductContex);
-  const isProductInWishlist = (id) => wishlist.some(item => item.id === id);
+function Wishlist() {
+  const { wishlist, handleAddToCart } = useContext(ProductContex);
 
-  console.log(cart);
+  console.log(wishlist);
 
   return (
     <div className="flex items-center justify-center">
       <div className="w-[80%]">
-        {cart.length > 0 ? (
-          cart.map((w, index) => (
+        {wishlist.length > 0 ? (
+          wishlist.map((w, index) => (
             <div
               key={index}
               className="border w-full rounded-lg p-4 shadow-lg flex justify-around items-center m-8"
@@ -39,20 +38,20 @@ function Cart() {
               </div>
               <div>
                 <button
-                  className="flex items-center justify-center w-full rounded-md border border-transparent px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md transition-transform transform hover:scale-105"
-                  onClick={(e) => handleAddToWishlist(e, w)}
+                  className="flex items-center justify-center w-full rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md transition-transform transform hover:scale-105"
+                  onClick={(e) => handleAddToCart(e, w)}
                 >
-                  <FaHeart className={`text-2xl mx-2 ${isProductInWishlist(w.id) ? 'text-red-500' : 'text-gray-500'}`} />
-                  Add To Wishlist
+                  <CiShoppingCart className="text-2xl mx-2" />
+                  Add to cart
                 </button>
               </div>
             </div>
           ))
         ) : (
           <div className="flex flex-col items-center justify-center h-64">
-            <p className="text-2xl font-bold text-gray-700">Your cart is empty.</p>
+            <p className="text-2xl font-bold text-gray-700">Your wishlist is empty.</p>
             <Link to="/product" className="mt-4 text-blue-600 hover:underline">
-              Back to Shop
+              Browse Products
             </Link>
           </div>
         )}
@@ -61,4 +60,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default Wishlist;
