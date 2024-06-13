@@ -8,6 +8,8 @@ import Cart from "../page/Cart";
 import SingleProduct from "../page/SingleProduct";
 import Header from "../component/Header";
 import Wishlist from "../page/Wishlist";
+import Login from "../page/Login";
+import Register from "../page/Register";
 
 
 function Routers() {
@@ -23,6 +25,8 @@ function Routers() {
 
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
       </Routes>
     </BrowserRouter>
   );

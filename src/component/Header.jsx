@@ -10,16 +10,18 @@ function Header() {
   return (
     <section className="fixed top-0 w-full z-50">
       <div className="text-end p-1 bg-zinc-300 text-[12px]">
-        <NavLink to="/">Sign in / Guest</NavLink>
-        <NavLink className="mx-4" to="/">
+        <NavLink to="/login">Login</NavLink>
+        <NavLink className="mx-4" to="/register">
           Create Account
         </NavLink>
       </div>
       <div className="flex justify-around items-center p-5 w-full border backdrop-blur-sm bg-white/30">
+        <NavLink to= "/">
         <div>
           <h1>LoGo</h1>
         </div>
 
+        </NavLink>
         <ul className="flex gap-10">
           <li>
             <NavLink

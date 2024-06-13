@@ -41,19 +41,19 @@ function FeaturedProduct({ data }) {
             </p>
             <div className="flex gap-2">
               <button
-                className="flex w-[80%] items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md transition-transform transform hover:scale-105"
+                className="flex w-[80%] items-center justify-center rounded-md border border-transparent bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md transition-transform transform hover:scale-[1.01]"
                 onClick={(e) => handleAddToCart(e, p)}
               >
                 <CiShoppingCart className="text-2xl mx-2" />
                 Add to cart
               </button>
               <button
-                className={`w-[20%] flex items-center justify-center rounded-md shadow-sm border focus:outline-none transition-colors duration-300 ${
-                  isProductInWishlist(p.id) ? "text-red-500" : "text-gray-500"
+                className={`w-[20%] flex items-center justify-center rounded-md shadow-sm border focus:outline-none transition-colors duration-300 hover:bg-gray-300 ${
+                  isProductInWishlist(p.id) ? "text-red-500 bg-gray-200" : "bg-gray-200 text-white"
                 }`}
                 onClick={(e) => handleAddToWishlist(e, p)}
               >
-                <FaHeart className="text-2xl" />
+                <FaHeart className="text-2xl " />
               </button>
             </div>
           </div>

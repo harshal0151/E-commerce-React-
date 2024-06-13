@@ -39,10 +39,11 @@ function Cart() {
               </div>
               <div>
                 <button
-                  className="flex items-center justify-center w-full rounded-md border border-transparent px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-md transition-transform transform hover:scale-105"
+                  className={`flex items-center justify-center w-full rounded-md border border-transparent px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-blue-200  shadow-md transition-transform transform hover:scale-105 ${
+                    isProductInWishlist(w.id) ? "text-red-500 bg-gray-200" : "bg-gray-200 text-white"}`}
                   onClick={(e) => handleAddToWishlist(e, w)}
                 >
-                  <FaHeart className={`text-2xl mx-2 ${isProductInWishlist(w.id) ? 'text-red-500' : 'text-gray-500'}`} />
+                  <FaHeart className={`text-2xl mx-2 `} />
                   Add To Wishlist
                 </button>
               </div>

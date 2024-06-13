@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { ProductContex } from "../useContex/productContex";
 import { FaHeart } from "react-icons/fa";
 import { CiShoppingCart, CiHeart } from "react-icons/ci";
-import { Link } from "react-router-dom";
+import loagingImg from "../assets/looder.svg"
 
 function SingleProduct() {
   const { id } = useParams();
@@ -64,19 +64,20 @@ function SingleProduct() {
                 Add to cart
               </button>
               <button
-                className="w-[20%] flex items-center justify-center rounded-md shadow-sm border focus:outline-none transition-colors duration-300"
-                onClick={(e) => handleAddToWishlist(e, productToDisplay)}
-              >
-                <FaHeart
-                  className="text-2xl"
-                  style={{ fill: isProductInWishlist(productToDisplay.id) ? 'red' : 'gray' }}
-                />
-              </button>
+                  className={`flex items-center justify-center w-[20%] rounded-md border border-transparent px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-blue-200  shadow-md  ${
+                    isProductInWishlist(productToDisplay.id) ? "text-red-500 bg-gray-200" : "bg-gray-200 text-white"}`}
+                  onClick={(e) => handleAddToWishlist(e, productToDisplay)}
+                >
+                  <FaHeart className={`text-2xl mx-2 `} />
+                  Add To Wishlist
+                </button>
             </div>
           </div>
         </div>
       ) : (
-        <p className="text-center">Loading...</p>
+        <div className="w-full h-[50vh]  flex justify-center items-center">
+          <img className="w-12" src= {loagingImg} alt="" />
+        </div>
       )}
     </>
   );
