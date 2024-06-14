@@ -26,6 +26,7 @@ function Routers() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist/>}/>
         <Route path="/login" element={<Login/>}/>
+        
         <Route path="/register" element={<Register/>}/>
       </Routes>
     </BrowserRouter>
