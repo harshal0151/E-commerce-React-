@@ -1,26 +1,54 @@
-import React, { useContext } from "react";
-import { CiHeart, CiShoppingCart } from "react-icons/ci";
-import { CiUser } from "react-icons/ci";
+import React, { useContext, useState, useEffect } from "react";
+import { CiHeart, CiShoppingCart, CiUser } from "react-icons/ci";
 import { ProductContex } from "../useContex/productContex";
 import { NavLink } from "react-router-dom";
+import { auth } from "../Firebase";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 
 function Header() {
-  const { cart , wishlist } = useContext(ProductContex);
+  const { cart, wishlist } = useContext(ProductContex);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  async function handleLogout() {
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (error) {
+      console.error("Error logging out: ", error);
+    }
+  }
 
   return (
     <section className="fixed top-0 w-full z-50">
       <div className="text-end p-1 bg-zinc-300 text-[12px]">
-        <NavLink to="/login">Login</NavLink>
-        <NavLink className="mx-4" to="/register">
-          Create Account
-        </NavLink>
+        {user ? (
+          <>
+            <span className="">Welcome,👋 {user.displayName || user.email}</span>
+            <button onClick={handleLogout} className="mx-12 hover:text-red-600">
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <NavLink to="/login">Login</NavLink>
+            <NavLink className="mx-4" to="/register">
+              Create Account
+            </NavLink>
+          </>
+        )}
       </div>
       <div className="flex justify-around items-center p-5 w-full border backdrop-blur-sm bg-white/30">
-        <NavLink to= "/">
-        <div>
-          <h1>LoGo</h1>
-        </div>
-
+        <NavLink to="/">
+          <div>
+            <h1>LoGo</h1>
+          </div>
         </NavLink>
         <ul className="flex gap-10">
           <li>
@@ -64,31 +92,32 @@ function Header() {
               Cart
             </NavLink>
             {cart.length > 0 && (
-              <span className="absolute top-1  bg-red-500 text-white rounded-full w-2 h-2 transform translate-x-1/2 -translate-y-1/2"></span>
+              <span className="absolute top-1 bg-red-500 text-white rounded-full w-2 h-2 transform translate-x-1/2 -translate-y-1/2"></span>
             )}
           </li>
         </ul>
 
         <div className="relative flex gap-10 text-2xl">
-           <NavLink to="/wishlist">
-            <CiHeart/>
-           </NavLink>
+          <NavLink to="/wishlist">
+            <CiHeart />
+          </NavLink>
 
           <NavLink to="/cart" className="relative">
             <CiShoppingCart />
-            
             <span className="absolute top-0 right-0 bg-blue-500 text-white rounded-full px-2 text-xs transform translate-x-1/2 -translate-y-1/2">
               {cart.length}
             </span>
           </NavLink>
-           
-          <NavLink>
-          <CiUser/>
+
+          <NavLink to="/profile" className="relative">
+            <CiUser />
+            {user && (
+              <span className="absolute top-0 text-sky-700  right-[-80px] text-sm">{user.displayName || user.email}</span>
+            )}
           </NavLink>
           {wishlist.length > 0 && (
-              <span className="absolute  top-5 left-2  bg-red-500 text-white rounded-full w-2 h-2 transform translate-x-1/2 -translate-y-1/2"></span>
-            )}
-          
+            <span className="absolute top-5 left-2 bg-red-500 text-white rounded-full w-2 h-2 transform translate-x-1/2 -translate-y-1/2"></span>
+          )}
         </div>
       </div>
     </section>

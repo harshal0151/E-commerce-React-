@@ -3,11 +3,22 @@ import { ProductContex } from "../useContex/productContex";
 import { CiShoppingCart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import loagingImg from "../assets/looder.svg";
+
+
 
 function Product() {
   const { data, handleAddToCart, handleAddToWishlist, wishlist } = useContext(ProductContex);
 
   const isProductInWishlist = (id) => wishlist.some(item => item.id === id);
+
+  if (data.length === 0) {
+    return (
+      <div className="w-full h-[50vh] flex justify-center items-center">
+        <img className="w-12" src={loagingImg} alt="Loading" />
+      </div>
+    );
+  }
 
   return (
     <>
