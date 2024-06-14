@@ -30,8 +30,8 @@ function Header() {
       <div className="text-end p-1 bg-zinc-300 text-[12px]">
         {user ? (
           <>
-            <span className="">Welcome,👋 {user.displayName || user.email}</span>
-            <button onClick={handleLogout} className="mx-12 hover:text-red-600">
+            <span className="mx-4">Welcome,👋 {user.displayName }</span>
+            <button onClick={handleLogout} className="mx-4 hover:text-red-600">
               Logout
             </button>
           </>
@@ -109,10 +109,10 @@ function Header() {
             </span>
           </NavLink>
 
-          <NavLink to="/profile" className="relative">
+          <NavLink to="/profile" className="flex gap-2">
             <CiUser />
             {user && (
-              <span className="absolute top-0 text-sky-700  right-[-80px] text-sm">{user.displayName || user.email}</span>
+              <span className=" text-sky-700  right-[-80px] text-sm">{user.displayName}</span>
             )}
           </NavLink>
           {wishlist.length > 0 && (
