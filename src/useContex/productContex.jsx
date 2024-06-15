@@ -6,9 +6,20 @@ export const ProductProvider = ({ children }) => {
   const [product, setProduct] = useState([]); 
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   function handleAddToCart(e, product) {
-    setCart([...cart, product]);
+    e.preventDefault();
+    const productExists = cart.some((item) => item.id === product.id);
+
+    if (productExists) {
+      const updatedCart = cart.map((item) =>
+        item.id === product.id ? { ...item, quantity: (item.quantity || 1) + 1 } : item
+      );
+      setCart(updatedCart);
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
   }
 
   function handleAddToWishlist(e, product) {
@@ -19,6 +30,11 @@ export const ProductProvider = ({ children }) => {
       setWishlist([...wishlist, product]);
     }
   }
+
+
+
+
+
 
   useEffect(() => {
     async function productData() {
@@ -42,6 +58,8 @@ export const ProductProvider = ({ children }) => {
         handleAddToWishlist,
         wishlist,
         setWishlist,
+        filteredData,
+        setFilteredData
       }}
     >
       {children}

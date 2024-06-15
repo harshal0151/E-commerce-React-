@@ -24,6 +24,7 @@ function FeaturedProduct({ data }) {
 
   return (
     <>
+    
       {featuredProducts.map((p) => (
         <div
           key={p.id}
@@ -45,7 +46,7 @@ function FeaturedProduct({ data }) {
               </h3>
             </Link>
             <p className="text-gray-700 text-xl my-5 ">
-              ₹ {p.attributes.price}
+              $ {p.attributes.price /100 }
             </p>
             <div className="flex gap-2">
               <button

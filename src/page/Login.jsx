@@ -18,7 +18,7 @@ function Login() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setError(null); // Clear previous errors
+    setError(null);
     try {
       const loggedUser = await signInWithEmailAndPassword(
         auth,

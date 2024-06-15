@@ -4,6 +4,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import loagingImg from "../assets/looder.svg";
+import Search from "../component/Search";
 
 
 
@@ -22,9 +23,13 @@ function Product() {
 
   return (
     <>
+   
       <h2 className="text-5xl p-8 mt-10 font-semibold">
         All <span className="text-blue-600">Products</span>
       </h2>
+      <div className="p-8 mx-8">
+      <Search/>
+    </div>
       <div className="flex flex-wrap justify-center">
         {data.map((p) => (
           <div

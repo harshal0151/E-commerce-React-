@@ -109,7 +109,7 @@ function Header() {
             </span>
           </NavLink>
 
-          <NavLink to="/profile" className="flex gap-2">
+          <NavLink to="/profile" className="flex  gap-2">
             <CiUser />
             {user && (
               <span className=" text-sky-700  right-[-80px] text-sm">{user.displayName}</span>
