@@ -5,9 +5,12 @@ import { NavLink } from "react-router-dom";
 import { auth } from "../Firebase";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 
+
+
 function Header() {
-  const { cart, wishlist } = useContext(ProductContex);
-  const [user, setUser] = useState(null);
+  const { cart, wishlist,user,setUser } = useContext(ProductContex);
+ 
+  console.log(user);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

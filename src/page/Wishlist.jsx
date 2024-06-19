@@ -9,7 +9,12 @@ function Wishlist() {
   console.log(wishlist);
 
   return (
-    <div className="flex items-center justify-center">
+    <> 
+    <div className="w-full h-screen"> 
+     <h2 className="text-5xl p-8 mt-12 font-semibold">
+        Add To <span className="text-blue-600">Wishlist</span>
+      </h2>
+    <div className="flex items-center justify-center ">
       <div className="w-[80%]">
         {wishlist.length > 0 ? (
           wishlist.map((w, index) => (
@@ -57,6 +62,8 @@ function Wishlist() {
         )}
       </div>
     </div>
+    </div>
+    </>
   );
 }
 

@@ -10,6 +10,7 @@ import Header from "../component/Header";
 import Wishlist from "../page/Wishlist";
 import Login from "../page/Login";
 import Register from "../page/Register";
+import Checkout from "../page/Checkout";
 
 
 function Routers() {
@@ -28,6 +29,7 @@ function Routers() {
         <Route path="/login" element={<Login/>}/>
         
         <Route path="/register" element={<Register/>}/>
+        <Route path="/checkout" element={<Checkout/>}/>
       </Routes>
     </BrowserRouter>
   );

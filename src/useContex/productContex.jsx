@@ -7,6 +7,8 @@ export const ProductProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
+  const [user, setUser] = useState(null);
+
 
   function handleAddToCart(e, product) {
     e.preventDefault();
@@ -59,7 +61,9 @@ export const ProductProvider = ({ children }) => {
         wishlist,
         setWishlist,
         filteredData,
-        setFilteredData
+        setFilteredData,
+        user,
+         setUser
       }}
     >
       {children}

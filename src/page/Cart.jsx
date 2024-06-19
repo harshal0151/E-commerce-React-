@@ -4,20 +4,18 @@ import { CiTrash, CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
 function Cart() {
-  const { cart, setCart, handleAddToWishlist, wishlist } = useContext(ProductContex);
+  const { cart, setCart, handleAddToWishlist, wishlist, user } = useContext(ProductContex);
   const isProductInWishlist = (id) => wishlist.some((item) => item.id === id);
 
   const [subTotalPrice, setSubTotalPrice] = useState(0);
-  const [tax, setTax] = useState(2); // Assuming tax is a fixed value or percentage
+  const [tax, setTax] = useState(2); 
   const [totalPrice, setTotalPrice] = useState(0);
 
-  // Function to calculate subtotal price
   const calculateSubTotal = () => {
     const subTotal = cart.reduce((total, item) => total + (item.attributes.price / 100) * (item.quantity || 1), 0);
     setSubTotalPrice(subTotal);
   };
 
-  // Function to update the total price whenever subtotal or tax changes
   useEffect(() => {
     calculateSubTotal();
   }, [cart]);
@@ -26,7 +24,6 @@ function Cart() {
     setTotalPrice(subTotalPrice + tax);
   }, [subTotalPrice, tax]);
 
-  // Function to handle quantity increment
   const incrementProductQuantity = (productId) => {
     const updatedCart = cart.map((item) => {
       if (item.id === productId) {
@@ -37,7 +34,6 @@ function Cart() {
     setCart(updatedCart);
   };
 
-  // Function to handle quantity decrement
   const decrementProductQuantity = (productId) => {
     const updatedCart = cart.map((item) => {
       if (item.id === productId && (item.quantity || 1) > 1) {
@@ -48,14 +44,16 @@ function Cart() {
     setCart(updatedCart);
   };
 
-  // Function to remove a product from the cart
   const removeProductFromCart = (productId) => {
     const updatedCart = cart.filter((item) => item.id !== productId);
     setCart(updatedCart);
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full h-screen">
+      <h2 className="text-5xl p-8  font-semibold">
+        Add To <span className="text-blue-600">Cart</span>
+      </h2>
       <div className="flex justify-around">
         <div className="w-[60%]">
           {cart.length === 0 ? (
@@ -131,8 +129,8 @@ function Cart() {
           )}
         </div>
         {cart.length > 0 && (
-          <div className="w-[30%] p-2 relative">
-            <div className="flex flex-col gap-3 bg-slate-200 w-[300px] p-5 mt-5 rounded-lg shadow-lg fixed">
+          <div className="w-[30%] p-2 relative mb-12">
+            <div className="flex flex-col gap-3 bg-slate-200 w-[300px] p-5  rounded-lg shadow-lg fixed ">
               <h5 className="text-xl font-bold mb-4">Cart Price</h5>
               <div className="mb-2">
                 <span className="text-lg font-semibold mr-2">Tax :</span>
@@ -146,9 +144,20 @@ function Cart() {
                 <span className="text-lg font-semibold mr-2">Total Price :</span>
                 <span className="text-gray-700">$ {totalPrice.toFixed(2)}</span>
               </div>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
-                Pay Now
-              </button>
+              {user ? (
+                <Link to="/checkout">
+                <button className="bg-blue-500 text-white px-12  py-2 rounded-md hover:bg-blue-600 transition-colors flex items-center w-full justify-center">
+                Checkout Now
+                </button>
+                </Link>
+              ) : (
+                <div className="text-center">
+                  <p className="text-red-500 mb-5">Please log in to checkout</p>
+                  <Link to="/login" className=" bg-slate-600 px-12  py-2 rounded-md hover:bg-blue-600 transition-colors flex items-center w-full justify-center">
+                    Login
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         )}
