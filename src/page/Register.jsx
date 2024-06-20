@@ -85,7 +85,7 @@ function Register() {
             className="mt-5 mb-5 w-full rounded-md bg-blue-600 p-2 text-center font-semibold text-white outline-none focus:ring"
           />
         </div>
-        <Link to="/login" className="text-center">
+        <Link to="/login" className="text-center text-blue-900 hover:text-blue-500">
           <p>Already Have an Account</p>
         </Link>
       </form>

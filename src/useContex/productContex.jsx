@@ -1,4 +1,6 @@
 import { createContext, useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ProductContex = createContext();
 
@@ -10,6 +12,7 @@ export const ProductProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
 
+
   function handleAddToCart(e, product) {
     e.preventDefault();
     const productExists = cart.some((item) => item.id === product.id);
@@ -19,8 +22,10 @@ export const ProductProvider = ({ children }) => {
         item.id === product.id ? { ...item, quantity: (item.quantity || 1) + 1 } : item
       );
       setCart(updatedCart);
+      toast.info(`Increased quantity of in the cart.`);
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
+      toast.success(`Product Added in cart.`);
     }
   }
 
@@ -28,8 +33,10 @@ export const ProductProvider = ({ children }) => {
     e.preventDefault();
     if (wishlist.some((item) => item.id === product.id)) {
       setWishlist(wishlist.filter((item) => item.id !== product.id));
+      toast.warn(`Removed  from the wishlist.`);
     } else {
       setWishlist([...wishlist, product]);
+      toast.success(`Added  to the wishlist.`);
     }
   }
 
@@ -67,6 +74,9 @@ export const ProductProvider = ({ children }) => {
       }}
     >
       {children}
+     
+     <ToastContainer className= "bottom-7 mt-[4rem] m-12" />
+  
     </ProductContex.Provider>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CiHeart, CiShoppingCart, CiUser } from "react-icons/ci";
-import { ProductContex } from "../useContex/productContex";
+import { ProductContex } from "../useContex/productContex"
 import { NavLink } from "react-router-dom";
 import { auth } from "../Firebase";
 import { signOut, onAuthStateChanged } from "firebase/auth";
@@ -9,8 +9,7 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 
 function Header() {
   const { cart, wishlist,user,setUser } = useContext(ProductContex);
- 
-  console.log(user);
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

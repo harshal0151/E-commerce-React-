@@ -52,7 +52,7 @@ function Cart() {
   return (
     <div className="w-full h-screen">
       <h2 className="text-5xl p-8  font-semibold">
-        Add To <span className="text-blue-600">Cart</span>
+        Shopping <span className="text-blue-600">Cart</span>
       </h2>
       <div className="flex justify-around">
         <div className="w-[60%]">
@@ -153,7 +153,7 @@ function Cart() {
               ) : (
                 <div className="text-center">
                   <p className="text-red-500 mb-5">Please log in to checkout</p>
-                  <Link to="/login" className=" bg-slate-600 px-12  py-2 rounded-md hover:bg-blue-600 transition-colors flex items-center w-full justify-center">
+                  <Link to="/login" className=" bg-slate-300 px-12  py-2 rounded-md hover:bg-blue-600 hover:text-white transition-colors flex items-center w-full justify-center">
                     Login
                   </Link>
                 </div>
